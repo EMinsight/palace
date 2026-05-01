@@ -224,7 +224,7 @@ runs:
       run: |
         source /tmp/timing_functions.sh
         start_timer
-        spack -e . install --only-concrete --no-check-signature --fail-fast --show-log-on-error --only dependencies --test root -j $(nproc)
+        spack -e . install --only-concrete --no-check-signature --fail-fast --show-log-on-error --include-build-deps --only dependencies --test root -j $(nproc)
         end_timer "Build Dependencies"
 
     - name: Print @develop commit hashes
