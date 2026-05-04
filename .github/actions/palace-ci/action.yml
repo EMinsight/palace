@@ -121,10 +121,13 @@ runs:
 
         # The Intel compiler has problems with C/C++/Fortran interop in MUMPS.
         # Fixes: for_main.c:(.text+0x19): undefined reference to `MAIN__'
+        # libffi 3.5.2's configure trips icx on a gcc-only option.
         if [[ "${{ inputs.toolchain }}" == "intel-oneapi" ]]; then
           cat << INTELEOF >> spack.yaml
             mumps:
               require: fflags=-nofor-main
+            libffi:
+              require: "@:3.4.8"
         INTELEOF
         fi
 
