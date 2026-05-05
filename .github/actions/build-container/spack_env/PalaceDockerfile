@@ -50,7 +50,7 @@ RUN cd {{ paths.environment }} && spack env activate . && \
     fi
 
 # Install the software
-RUN cd {{ paths.environment }} && spack env activate . && spack install -j$(nproc) --fail-fast
+RUN cd {{ paths.environment }} && spack env activate . && spack install --include-build-deps -j$(nproc) --fail-fast
 
 # Push installed packages to the binary cache
 RUN cd {{ paths.environment }} && spack env activate . && \
